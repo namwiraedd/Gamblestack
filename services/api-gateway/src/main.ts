@@ -1,6 +1,12 @@
 import express from "express";
 import { createProxyMiddleware } from "http-proxy-middleware";
 import dotenv from "dotenv";
+import { globalRateLimiter } from "services/common/src/middleware/rateLimiter";
+// ...
+app.use(globalRateLimiter);
+app.use("/auth", createProxyMiddleware({ target: "http://auth:4001", changeOrigin: true, pathRewrite: {'^/auth': ''} }));
+// ensure strict limiter on sensitive proxied routes done at service level
+
 dotenv.config();
 const app = express();
 app.use(express.json());
