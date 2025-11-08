@@ -287,4 +287,24 @@ You’re live. If you want, I’ll now:
 * generate a runnable `make migrate` or `migrate` container entry so migrations run automatically on `docker-compose up`, **or**
 * fully flesh out one service to production-level (pick: `wallet`, `sportsbook`, or `games-provablyfair`) with tests, lint, and full error handling.
 
-Which one do you want me to harden next? Wallet, Sportsbook, or Games?
+Quick checklist to paste into repo and run
+
+Add DB migrations 002–005 and apply them.
+
+Add idempotency middleware to each payment webhook route.
+
+Wire the JWT RS256 keys; run scripts/generate_jwt_keys.sh locally and store private key in secret manager.
+
+Add refresh token endpoints to auth service and ensure token rotation on /token/rotate.
+
+Add VRF provider abstraction; choose HSM or Chainlink and implement provider. For now, set CHAINLINK_VRF_ENABLED=false and run HSM mock during dev.
+
+Add services/odds-connector and configure provider API key + rate-limiter.
+
+Add payment webhook routes for Stripe/Coinbase/BTCPay and protect them with idempotency handler.
+
+Add scripts/reconcile.js and scheduled GitHub Action for nightly runs.
+
+Add RBAC tables and requireRole middleware. Protect admin endpoints with requireRole("ops") or similar.
+
+Add appropriate environment variables into .env for local dev; for production move keys to Vault/KMS.
