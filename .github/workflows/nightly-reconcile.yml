@@ -1,0 +1,18 @@
+name: Nightly Reconciliation
+on:
+  schedule:
+    - cron: '0 2 * * *' # 02:00 UTC daily
+jobs:
+  reconcile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Run reconcile script
+        run: |
+          cd services/wallet
+          yarn
+          node scripts/reconcile.js
