@@ -80,3 +80,16 @@ Games: game lifecycle, bet acceptance, RNG integration, paytable rules, audit re
 KYC: capture identity documents, biometric checks, PEP & sanctions screening, webhook-based status updates.
 
 Admin: role-based access control, odds overrides, game controls (disable/enable), manual settlements, reporting, AML alerts.
+
+
+# Gamblestack - Skeleton Repo
+
+Minimal skeleton for a combined casino + sportsbook platform.
+
+Run locally:
+1. copy `.env.example` -> `.env`
+2. `docker-compose -f docker/local.yml up --build`
+3. Frontend: http://localhost:3000
+4. API gateway: http://localhost:4000
+
+See `docs/` for architecture & handover.
