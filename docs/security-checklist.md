@@ -1,0 +1,5 @@
+- TLS 1.3
+- KMS for keys
+- Vault for secrets
+- Pen tests pre-launch
+- GDPR endpoints implemented (export/delete)
