@@ -1,0 +1,9 @@
+{
+  "name": "gamblestack-monorepo",
+  "private": true,
+  "workspaces": [
+    "services/*",
+    "web"
+  ]
+}
+
